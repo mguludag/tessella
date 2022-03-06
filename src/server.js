@@ -79,8 +79,8 @@ module.exports = (config) => {
     const z = parseInt(ctx.params.z, 10);
     const x = parseInt(ctx.params.x, 10);
     const y = parseInt(ctx.params.y, 10);
-    const ymax = 1 << z;
-    const y_flipped = ymax - y - 1;
+    const ymax = 1 << z;            // flip_y option
+    const y_flipped = ymax - y - 1; // code is taken from https://alastaira.wordpress.com/2011/07/06/converting-tms-tile-coordinates-to-googlebingosm-tile-coordinates/
 
     const scale = (ctx.params.scale || '@1x').slice(1, 2) | 0;
 
