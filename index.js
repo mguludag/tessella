@@ -7,7 +7,7 @@ const packagejson = require('./package.json');
 
 const config = minimist(process.argv.slice(2), {
   string: ['port', 'socket', 'cacheSize', 'sourceCacheSize'],
-  boolean: ['cors'],
+  boolean: ['cors', 'flip_y'],
   alias: {
     h: 'help',
     v: 'version'
@@ -15,6 +15,7 @@ const config = minimist(process.argv.slice(2), {
   default: {
     cors: true,
     port: 4000,
+    flip_y: false,
     cacheSize: '10',
     sourceCacheSize: 6
   }
@@ -32,6 +33,9 @@ const help = () => {
     where [uri] is tilelive URI to serve and [options] is any of:
       --port - port to run on (default: ${config.port})
       --socket - use Unix socket instead of port
+      --flip_y - compatibility for some osm map plugins (default: ${
+        config.flip_y
+      })
       --cacheSize - cache size in MB (default: ${config.cacheSize})
       --sourceCacheSize - source cache size in # of sources (default: ${
         config.sourceCacheSize

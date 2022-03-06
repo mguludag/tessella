@@ -38,6 +38,7 @@ module.exports = (config) => {
 
   let metadata;
   const sourcesByScale = {};
+    
 
   if (config.cors) app.use(cors());
   app.use(compress());
@@ -78,6 +79,9 @@ module.exports = (config) => {
     const z = parseInt(ctx.params.z, 10);
     const x = parseInt(ctx.params.x, 10);
     const y = parseInt(ctx.params.y, 10);
+    const ymax = 1 << z;
+    const y_flipped = ymax - y - 1;
+
     const scale = (ctx.params.scale || '@1x').slice(1, 2) | 0;
 
     let source = sourcesByScale[scale];
@@ -87,7 +91,7 @@ module.exports = (config) => {
     }
 
     try {
-      const { tile, headers } = await getTile(source, z, x, y);
+      const { tile, headers } = await getTile(source, z, x, (config.flip_y ? y_flipped : y));
 
       ctx.set(headers);
       ctx.body = tile;
