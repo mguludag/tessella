@@ -32,6 +32,7 @@ Usage: tessella [options] [URI]
 
 where [uri] is tilelive URI to serve and [options] is any of:
   --port - port to run on (default: 4000)
+  --flip_y - compatibility with some map plugins
   --socket - use Unix socket instead of port
   --cacheSize - cache size in MB (default: 10)
   --sourceCacheSize - source cache size in # of sources (default: 6)
